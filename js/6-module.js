@@ -136,12 +136,15 @@ const sortByAscendingBalance = users => {
   return [...users].sort(({ balance:a }, {balance: b}) => a - b) 
 };
 
+
 function highAndLow(numbers){
   const newArr = numbers.split(' ')
     .sort((a, b) => b - a);
-    newArr.splice(1, newArr.length - 2);                
-    return newArr         
+    // newArr.splice(1, newArr.length - 2);                
+    return newArr.splice(1, newArr.length - 2).join(' ')                
 }
+console.log('4 5 29 54 4 0 -214 542 -64 1 -3 6 -6');
 console.log(highAndLow("4 5 29 54 4 0 -214 542 -64 1 -3 6 -6"));
+
 
 

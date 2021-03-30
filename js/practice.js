@@ -431,17 +431,70 @@ Return the words of the initial song that Polycarpus used to make a dubsteb remi
 // // console.log(newCar);
 // console.log(Number.__proto__);
 // console.dir(Car.__proto__);
-var number = function(array){
-  if (array.length === 0) return array;
-  let newArr= [];
-  for (let i = 0; i < array.length; i++) {
-    newArr.push(i + 1 + ': ' + array[i])
-  }
-  return newArr;
+// var number = function(array){
+//   if (array.length === 0) return array;
+//   let newArr= [];
+//   for (let i = 0; i < array.length; i++) {
+//     newArr.push(i + 1 + ': ' + array[i])
+//   }
+//   return newArr;
 
+// }
+
+// console.log(number(["a", "b", "c"]));
+
+// console.log(new number(["a", "b", "c"]));
+// console.dir(number);
+
+
+function isPangram(string){
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('').map(symbol => ({ letter: symbol, num: 0 }));
+  const strArr = string.toLowerCase().split('');
+  const filter = alphabet.map(s => {
+    strArr.forEach(symb => {
+      if(s.letter === symb) {
+        s.num += 1;
+      }
+    })
+    return s
+  })
+  return !filter.find(s => s.num === 0)
 }
 
-console.log(number(["a", "b", "c"]));
+// console.log(isPangram("The quick brown fox jumps over the lazy dog."));
 
-console.log(new number(["a", "b", "c"]));
-console.dir(number);
+
+ function songDecoder(song){
+  return song.split('WUB').filter(a => a.length > 0).join(' ')
+}
+
+// console.log(songDecoder("AWUBBWUBC"));
+// console.log(songDecoder("AWUBWUBWUBBWUBWUBWUBC"));
+
+// function dataReverse(data) {
+//   return [...data].reduce((acc, v, i, a) => {
+//     if ((i + 1) % 8 === 0) return a.slice(i-7, i+1)
+//   })
+// }
+
+function dataReverse(data) {
+  return data
+  .reduce((acc, el, i, a) =>
+  (i + 1) % 8 === 0
+  ? [...acc, a.slice(i - 7, i + 1)]
+  : acc,
+  [])
+  .reverse()
+  .flatMap(el => el)
+}
+// const arr = data.reduce((acc, el, i, a) => {
+//   if ((i + 1) % 8 !== 0) return acc;
+//   el = a.slice(i - 7, i + 1)
+//   return acc = [...acc, el ]
+// }, []).reverse().flatMap(el => el);
+// return arr
+
+
+const data1 = [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,1,0];
+const data2 = [1,0,1,0,1,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1];
+console.log(dataReverse(data1),data2);

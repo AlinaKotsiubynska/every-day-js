@@ -120,8 +120,10 @@ class Calculator {
 
 console.log(new Calculator().calculate('1 - 2'));
 const newCalc = new Calculator();
+console.log("🚀newCalc", {...newCalc})
 newCalc.addMethod("*", (a, b) => a * b);
+// console.log(newCalc.calculate('2 * 8'));;
 console.log(newCalc);
-console.log(newCalc.calculate('5 / 8'));
-newCalc.addMethod("/", (a, b) => a / b);
-console.log(newCalc.calculate('5 / 8'));
+// console.log(newCalc.calculate('5 / 8'));
+// newCalc.addMethod("/", (a, b) => a / b);
+// console.log(newCalc.calculate('5 / 8'));
