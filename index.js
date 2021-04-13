@@ -65,14 +65,29 @@
 */
 const containerEl = document.getElementById('container')
 const squareEl = document.getElementById('square')
+const buttons = [...containerEl.children];
 
-function changeSquareCollor(evt) {
-  evt.target.classList.toggle('activeBtn')
+containerEl.addEventListener('click', handlerOnBtnClick)
+
+function changeSquareCollor(currentBtn) {
+  currentBtn.classList.toggle('activeBtn')
+  squareEl.style.backgroundColor = currentBtn.classList.contains('activeBtn') ? currentBtn.textContent.toLowerCase() : '';
 }
-containerEl.addEventListener('click', changeSquareCollor)
-const { style } = squareEl;
-style.backgroundColor = "red";
 
+function disablePreviousBtn(currentBtn) {
+  const activeButtons = buttons.filter(btn => btn.classList.contains('activeBtn'))
+  
+  if (!activeButtons.length) return;
+  activeButtons.forEach(button => {
+    if (currentBtn !== button) button.classList.remove('activeBtn');
+  })
+}
+
+function handlerOnBtnClick(evt) {
+  const currentBtn = evt.target;
+  disablePreviousBtn(currentBtn)
+  changeSquareCollor(currentBtn)
+}
 console.log(containerEl);
 console.log(squareEl.style.color);
 
